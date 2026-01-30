@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You Pesekkk 💖</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+*{box-sizing:border-box;font-family:'Poppins',sans-serif}
+
+:root{
+  --pink:#ff5e8e;
+  --pink2:#ff85b3;
+  --ink:#1f1f24;
+  --muted:#555;
+  --card:rgba(255,255,255,.92);
+  --ring:rgba(255,94,142,.35);
+  --shadow:0 35px 80px rgba(0,0,0,.22);
+  --shadow2:0 16px 40px rgba(0,0,0,.18);
+}
+
+html,body{height:100%}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(120deg,#ff9a9e,#fad0c4,#fbc2eb);
+  background-size:300% 300%;
+  animation:bg 14s ease infinite;
+  display:flex;
+  justify-content:center;
+  padding:50px 14px;
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+
+/* reduce motion */
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+
+@keyframes bg{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* ===== CARD ===== */
+.container{
+  width:100%;
+  max-width:420px;
+  padding:34px 28px;
+  border-radius:32px;
+  text-align:center;
+  background:var(--card);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:var(--shadow);
+  margin:auto;
+  position:relative;
+  z-index:2;
+  overflow:hidden;
+}
+
+.container::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:linear-gradient(135deg, rgba(255,94,142,.55), rgba(255,133,179,.25), rgba(255,255,255,.2));
+  filter:blur(18px);
+  z-index:-1;
+}
+
+.container.show{
+  animation:pop .55s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes pop{
+  from{transform:translateY(10px) scale(.94);opacity:0}
+  to{transform:translateY(0) scale(1);opacity:1}
+}
+
+.hidden{display:none}
+
+h2{
+  margin:0 0 6px;
+  letter-spacing:.2px;
+}
+p{
+  margin:6px 0 0;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+/* ===== INPUT & BUTTON ===== */
+input,button{
+  width:100%;
+  padding:15px 16px;
+  border-radius:18px;
+  font-size:16px;
+  margin-top:16px;
+  outline:none;
+}
+
+input{
+  border:2px solid rgba(255,133,179,.55);
+  text-align:center;
+  background:rgba(255,255,255,.8);
+  transition:border-color .2s ease, box-shadow .2s ease, transform .15s ease;
+}
+
+input::placeholder{color:rgba(31,31,36,.45)}
+
+input:focus{
+  border-color:var(--pink);
+  box-shadow:0 0 0 6px var(--ring);
+  transform:translateY(-1px);
+}
+
+button{
+  border:none;
+  background:linear-gradient(135deg,var(--pink),var(--pink2));
+  color:#fff;
+  cursor:pointer;
+  transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  font-weight:600;
+  letter-spacing:.2px;
+}
+
+button:hover{
+  transform:translateY(-1px) scale(1.02);
+  box-shadow:0 14px 30px rgba(255,94,142,.40);
+  filter:saturate(1.05);
+}
+
+button:active{
+  transform:translateY(0) scale(.99);
+}
+
+button:focus-visible{
+  box-shadow:0 0 0 6px var(--ring), 0 14px 30px rgba(255,94,142,.35);
+}
+
+/* ===== DATE ===== */
+.date-wrap{
+  display:flex;
+  gap:10px;
+}
+
+.date-wrap input{
+  flex:1;
+  padding:14px 10px;
+}
+
+/* ===== YES NO ===== */
+.btn-wrap{
+  position:relative;
+  height:64px;
+  margin-top:18px;
+}
+
+#no{
+  position:absolute;
+  left:0;
+  top:0;
+  width:48%;
+  background:linear-gradient(135deg, rgba(31,31,36,.65), rgba(31,31,36,.45));
+  box-shadow:0 10px 22px rgba(0,0,0,.12);
+}
+
+.btn-wrap button:first-child{
+  position:absolute;
+  left:0;
+  top:0;
+  width:48%;
+}
+
+.btn-wrap button#no{
+  right:0;
+  left:auto;
+}
+
+/* ===== IMAGE ===== */
+img{
+  width:100%;
+  border-radius:24px;
+  margin:22px 0;
+  box-shadow:var(--shadow2);
+  transform:translateZ(0);
+}
+
+/* ===== DECOR ===== */
+.decor span{
+  position:fixed;
+  bottom:-120px;
+  animation:float 10s linear infinite;
+  opacity:.95;
+  z-index:0;
+  filter:drop-shadow(0 8px 10px rgba(0,0,0,.12));
+  user-select:none;
+  pointer-events:none;
+}
+
+@keyframes float{
+  0%{transform:translateY(0) rotate(0)}
+  100%{transform:translateY(-160vh) rotate(360deg)}
+}
+
+/* ===== CANDLE ===== */
+.candle{
+  font-size:44px;
+  margin-bottom:8px;
+  animation:flicker 1s infinite alternate;
+  filter:drop-shadow(0 10px 12px rgba(0,0,0,.12));
+}
+
+@keyframes flicker{
+  from{transform:rotate(-2deg) translateY(0)}
+  to{transform:rotate(2deg) translateY(-1px)}
+}
+
+/* ===== FEEDBACK ===== */
+#hint{
+  margin-top:10px;
+  font-size:14px;
+  color:var(--pink);
+  min-height:18px;
+}
+
+#hint.ok{color:#22a06b}
+#hint.bad{color:var(--pink)}
+
+/* ===== SHAKE ERROR ===== */
+.shake{
+  animation:shake .32s;
+}
+@keyframes shake{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-6px)}
+  50%{transform:translateX(6px)}
+  75%{transform:translateX(-6px)}
+  100%{transform:translateX(0)}
+}
+
+/* ===== SMALL SCREEN POLISH ===== */
+@media (max-width:380px){
+  .container{padding:28px 18px;border-radius:28px}
+  input,button{border-radius:16px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- STEP 1 -->
+<div class="container" id="step1">
+  <h2>HAIII SAYANGGKUU 💕</h2>
+  <p>Isinya pakai tanggal lahir kamu yaaa!!!!</p>
+
+  <div class="date-wrap">
+    <input id="dd" maxlength="2" placeholder="DD" inputmode="numeric" autocomplete="off">
+    <input id="mm" maxlength="2" placeholder="MM" inputmode="numeric" autocomplete="off">
+    <input id="yy" maxlength="4" placeholder="YYYY" inputmode="numeric" autocomplete="off">
+  </div>
+
+  <button onclick="checkDate()">Masuk</button>
+</div>
+
+<!-- STEP 2 -->
+<div class="container hidden" id="step2">
+  <h2>EHHHH 😳</h2>
+  <p>kamuu ulang tahunn yaa?</p>
+  <div class="btn-wrap">
+    <button onclick="next()">Iyaaa sayangg 💖</button>
+    <button id="no">Gaaa siii ❌</button>
+  </div>
+</div>
+
+<!-- STEP 3 -->
+<div class="container hidden" id="step3">
+  <h2>Cieeee 😏</h2>
+  <p>Kamu sayang aku gaa?</p>
+  <input id="answer" placeholder="jawab jujur yaa 😆" autocomplete="off">
+  <button onclick="checkAnswer()">Jawab</button>
+  <div id="hint"></div>
+</div>
+
+<!-- FINAL -->
+<div class="container hidden" id="final">
+  <div class="candle">🕯️🎂🕯️</div>
+  <h2>Happy Birthday 💖</h2>
+  <img src="gambar/photo_6314255061256703035_y.jpg" alt="Foto kamu" loading="lazy">
+  <p id="text"></p>
+</div>
+
+<div class="decor" id="decor"></div>
+
+<audio id="music" src="audio/Ed Sheeran - Photograph (Official Lyric Video) [KKQl-pIRQMY].mp3" preload="auto"></audio>
+
+<script>
+/* ===== ELEMENTS (lebih aman daripada ngandelin global id) ===== */
+const step1 = document.getElementById("step1");
+const step2 = document.getElementById("step2");
+const step3 = document.getElementById("step3");
+const final = document.getElementById("final");
+
+const dd = document.getElementById("dd");
+const mm = document.getElementById("mm");
+const yy = document.getElementById("yy");
+
+const no = document.getElementById("no");
+const answer = document.getElementById("answer");
+const hint = document.getElementById("hint");
+const decor = document.getElementById("decor");
+
+const music = document.getElementById("music");
+
+/* ===== DATA ===== */
+const correct={dd:"31",mm:"01",yy:"2006"}
+const message=`Selamat ulang tahun yaa sayangku 🤍
+Ada hal sederhana dari kamu
+yang selalu berhasil
+bikin hari aku terasa lebih ringan.
+
+Semoga semua hal baik selalu menyertai kamu,
+langkah kamu selalu di permudah ya sayangg.
+
+Aku gak janji sempurna,
+tapi aku janji selalu berusaha jadi orang
+yang ada selalu di samping kamu.
+
+I love you saayangg, today and alwayss 💐
+
+Bili Pendi Kerismawan.`
+
+/* ===== SMALL HELPERS ===== */
+function onlyNum(el){ el.value = el.value.replace(/[^0-9]/g,'') }
+
+function show(el){
+  el.classList.remove("hidden");
+  el.classList.add("show");
+  setTimeout(()=>el.classList.remove("show"), 650);
+}
+
+function hide(el){ el.classList.add("hidden"); }
+
+function setHint(text, type){
+  hint.classList.remove("ok","bad");
+  hint.innerText = text || "";
+  if(type) hint.classList.add(type);
+}
+
+/* ===== SMART DATE ===== */
+dd.addEventListener("input",()=>{
+  onlyNum(dd);
+  if(dd.value.length===2) mm.focus();
+});
+mm.addEventListener("input",()=>{
+  onlyNum(mm);
+  if(mm.value.length===2) yy.focus();
+});
+yy.addEventListener("input",()=>onlyNum(yy));
+
+/* Enter buat submit */
+[dd,mm,yy].forEach((el)=>{
+  el.addEventListener("keydown",(e)=>{
+    if(e.key==="Enter") checkDate();
+  });
+});
+
+function checkDate(){
+  // normalize biar kalau input 1 jadi 01 (biar ga ngejailin user)
+  const d = dd.value.padStart(2,"0");
+  const m = mm.value.padStart(2,"0");
+  const y = yy.value;
+
+  if(d===correct.dd && m===correct.mm && y===correct.yy){
+    hide(step1);
+    show(step2);
+  }else{
+    step1.classList.add("shake");
+    setTimeout(()=>step1.classList.remove("shake"),320);
+    // lebih halus daripada alert
+    dd.focus();
+  }
+}
+
+/* ===== NO BUTTON (dibikin stay di dalam area tombol) ===== */
+no.addEventListener("mouseover",()=>{
+  const wrap = no.parentElement; // .btn-wrap
+  const wrapRect = wrap.getBoundingClientRect();
+  const btnRect = no.getBoundingClientRect();
+
+  const maxX = Math.max(0, wrapRect.width - btnRect.width);
+  const maxY = Math.max(0, wrapRect.height - btnRect.height);
+
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
+
+  no.style.left = x + "px";
+  no.style.top  = y + "px";
+});
+
+/* buat mobile (tap) */
+no.addEventListener("touchstart",(e)=>{
+  e.preventDefault();
+  no.dispatchEvent(new Event("mouseover"));
+},{passive:false});
+
+function next(){
+  hide(step2);
+  show(step3);
+  answer.focus();
+}
+
+/* ===== SAYANG LOGIC ===== */
+answer.addEventListener("keydown",(e)=>{
+  if(e.key==="Enter") checkAnswer();
+});
+
+function checkAnswer(){
+  const val = (answer.value || "").toLowerCase().trim();
+  setHint("", "");
+
+  const hasSayang = val.includes("sayang");
+  const hasBanget = val.includes("banget");
+
+  if(hasSayang && hasBanget){
+    openFinal();
+  }else if(hasSayang){
+    setHint("sayang doang? 😏 kurang dalem", "bad");
+  }else{
+    setHint("itu bukan jawaban 😜", "bad");
+  }
+}
+
+/* ===== FINAL ===== */
+let decorSpawned = false;
+
+function openFinal(){
+  hide(step3);
+  show(final);
+
+  // audio (tetep aman, play cuma bisa setelah interaksi user)
+  music.volume = 0.7;
+  music.play().catch(()=>{});
+
+  if(!decorSpawned){
+    spawnDecor();
+    decorSpawned = true;
+  }
+  typeText();
+}
+
+function spawnDecor(){
+  const items=["💖","🎈","🌸","✨","🎉","🧁"];
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const count = reduceMotion ? 18 : 55;
+
+  for(let i=0;i<count;i++){
+    const s=document.createElement("span");
+    s.innerHTML = items[Math.floor(Math.random()*items.length)];
+    s.style.left = Math.random()*100 + "vw";
+    s.style.fontSize = (18+Math.random()*28) + "px";
+    s.style.animationDuration = (6+Math.random()*7) + "s";
+    s.style.animationDelay = (Math.random()*2) + "s";
+    decor.appendChild(s);
+  }
+}
+
+function typeText(){
+  const el = document.getElementById("text");
+  el.innerHTML = ""; // reset biar ga dobel kalau kepencet ulang
+  let i=0;
+
+  const t=setInterval(()=>{
+    el.innerHTML += (message[i] === "\n") ? "<br>" : message[i];
+    i++;
+    if(i>=message.length) clearInterval(t);
+  }, 42);
+}
+</script>
+
+</body>
+</html>
